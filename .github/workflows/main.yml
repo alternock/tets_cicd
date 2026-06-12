@@ -5,7 +5,7 @@ on:
     branches:
         - main
 
-  workflows_dispatch:
+  workflow_dispatch:
 
 
 jobs:
