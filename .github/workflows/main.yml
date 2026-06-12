@@ -14,4 +14,4 @@ jobs:
     
     steps:
       - name: mensaje de bienvenida
-        run: ehco "hola desde githnub actions"  
+        run: echo "hola desde githnub actions"  
