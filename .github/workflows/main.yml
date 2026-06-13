@@ -7,6 +7,8 @@ on:
 
   workflow_dispatch:
 
+env:
+  NODE_VERSION: '24'
 
 jobs:
   deploy-to-vercel:
@@ -14,15 +16,16 @@ jobs:
     
     steps:
       - name: download project
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       
       - name: install nodejs
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
         with:
-          node-version: '20'
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
        
       - name: install minifier-terser
-        run: npm install html-minifier-terser -g
+        run: npm install html-minifier-terser
 
       - name: minify index.html
         run: |
