@@ -29,8 +29,12 @@ jobs:
       - name: minify index.html
         run: |
           mkdir -p dist
-          ./node_modules/.bin/html-minifier-terser --collapse-whitespace --remove-comments --minify-js true -o dist/index.html index.html
+          for file in *.html; do
+            ./node_modules/.bin/html-minifier-terser --collapse-whitespace --remove-comments --minify-js true -o dist/$file $file
+             echo "minify $file"
+          done
 
+ 
       - name: verificar minify
         run: |
           if [ ! -f ./dist/index.html ]; then
