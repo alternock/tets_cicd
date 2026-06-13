@@ -22,7 +22,6 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
        
       - name: install minifier-terser
         run: npm install html-minifier-terser
