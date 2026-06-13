@@ -27,11 +27,7 @@ jobs:
       - name: minify index.html
         run: |
           mkdir -p dist
-          html-minifier-terser \ 
-          --collapse-whitespace \
-          --remove-comments \
-          --minify-js true \
-          -o dist/index.html index.html 
+          html-minifier-terser --collapse-whitespace --remove-comments --minify-js true -o dist/index.html index.html
 
       - name: deploy to vercel
         uses: amondnet/vercel-action@v42
