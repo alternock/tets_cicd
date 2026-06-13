@@ -39,6 +39,13 @@ jobs:
           echo "weight without minify index.html $(wc -c < index.html) bytes"
           echo "weight with minify ./dist/index.html $(wc -c < ./dist/index.html) bytes" 
 
+      - name: save output .dist/index.html     
+        uses: actions/upload-artifact@v4
+        with: 
+          name: dist
+          path: dist/
+          retention-days: 10  
+
       - name: deploy to vercel
         uses: amondnet/vercel-action@v42
         with:
