@@ -29,6 +29,16 @@ jobs:
           mkdir -p dist
           html-minifier-terser --collapse-whitespace --remove-comments --minify-js true -o dist/index.html index.html
 
+      - name: verificar minify
+        run: |
+          if [ ! -f ./dist/index.html ]; then
+              echo "no found index.html with minify"
+              exit 1
+          fi
+          
+          echo "weight without minify index.html $(wc -c < index.html) bytes"
+          echo "weight with minify ./dist/index.html $(wc -c < ./dist/index.html) bytes" 
+
       - name: deploy to vercel
         uses: amondnet/vercel-action@v42
         with:
