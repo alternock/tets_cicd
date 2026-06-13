@@ -13,5 +13,31 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: mensaje de bienvenida
-        run: echo "hola desde githnub actions"  
+      - name: download project
+        uses: action/checkout@v4
+      
+      - name: install nodejs
+        uses: action/setup-node@v4
+        with:
+          node-version: '20'
+       
+      - name: install minifier-terser
+        run: npm install html-minifier-terser -g
+
+      - name: minify index.html
+        run: |
+          mkdir -p dist \
+          html-minifier-terser \ 
+          --collapse-whitespace \
+          --remove-comments \
+          --minify-js true \
+          -o dist/index.html index.html 
+
+      - name: deploy to vercel
+        uses: mondnet/vercel-action@v42
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }} 
+          vercel-args: --prod 
+          vercel-org-id: ${{ secrets.VERCEL_USER_ID}} 
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID}}
+          working-directory: ./dist 
