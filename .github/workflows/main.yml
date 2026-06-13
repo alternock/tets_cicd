@@ -29,7 +29,7 @@ jobs:
       - name: minify index.html
         run: |
           mkdir -p dist
-          html-minifier-terser --collapse-whitespace --remove-comments --minify-js true -o dist/index.html index.html
+          ./node_modules/.bin/html-minifier-terser --collapse-whitespace --remove-comments --minify-js true -o dist/index.html index.html
 
       - name: verificar minify
         run: |
